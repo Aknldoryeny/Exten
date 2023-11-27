@@ -1,4 +1,5 @@
 using Exten.Models;
+using Exten.Models.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

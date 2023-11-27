@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Exten.Models.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exten.Models
@@ -10,5 +11,6 @@ namespace Exten.Models
         {
             Database.EnsureCreated();
         }
+        public DbSet<CategoryProduct> CategoriesProduct { get; set; }
     }
 }
