@@ -1,5 +1,6 @@
 ﻿using Exten.Models;
 using Exten.Models.Data;
+using Exten.ViewModels.CategoriesProduct;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,22 +50,31 @@ namespace Exten.Controllers
             return View();
         }
 
-        // POST: CategoriesProduct/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName")] CategoryProduct categoryProduct)
+        public async Task<IActionResult> Create(CreateCategoriesProductViewModel model)
         {
+
+            if (_context.CategoriesProduct
+                .Where(f => f.CategoryName == model.CategoryName)
+                .FirstOrDefault() != null
+                )
+            {
+                ModelState.AddModelError("", "Введеная категория уже существует");
+            }
+
             if (ModelState.IsValid)
             {
+                CategoryProduct categoryProduct = new()
+                {
+                    CategoryName = model.CategoryName,
+                };
                 _context.Add(categoryProduct);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoryProduct);
+            return View(model);
         }
-
         // GET: CategoriesProduct/Edit/5
         public async Task<IActionResult> Edit(short? id)
         {
