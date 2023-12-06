@@ -15,5 +15,7 @@ namespace Exten.Models.Data
         [Required(ErrorMessage = "Введите название категории товаров")]
         [Display(Name = "Категория")]
         public string CategoryName { get; set; }
+        // Навигационные свойства
+        public ICollection<Product> Products { get; set; }
     }
 }

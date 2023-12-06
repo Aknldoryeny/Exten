@@ -12,5 +12,6 @@ namespace Exten.Models
             Database.EnsureCreated();
         }
         public DbSet<CategoryProduct> CategoriesProduct { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
