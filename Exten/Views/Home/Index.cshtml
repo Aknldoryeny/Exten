@@ -1,32 +1,33 @@
 ﻿﻿@{
     ViewData["Title"] = "Home Page";
 }
-<style>
+@* <style>
     .text-center {
-        background-image: /* #000 */ url("Ёжик/cute-kawaii.gif") no-repeat right bottom; /* Путь к графическому файлу с фоном */
+        height: 100%;
+        background: #000 url(cute-kawaii.gif) no-repeat center;
     }
-</style>
+</style> *@
 
 <div class="text-center">
-@*     <h1 class="display-4">
+    <h1 class="display-4">
         <div class="tenor-gif-embed" data-postid="15322516" data-share-method="host" data-aspect-ratio="1.00313" data-height="450px" data-width="450px">
             <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-    </h1> *@
+    </h1>
 
     <h1 class="display-4">Welcome!!!</h1>
     <br>
     <br>
-</div>
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>@User.Identity.Name</p>
 
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <input type="submit" value="Выход" />
-    </form>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login">Вход</a>
-    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-}
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" />
+        </form>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login">Вход</a>
+        <a asp-controller="Account" asp-action="Register">Регистрация</a>
+    }
+</div>

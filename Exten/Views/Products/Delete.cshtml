@@ -1,15 +1,24 @@
 ﻿@model Exten.Models.Data.Product
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Удаление";
 }
 
-<h1>Delete</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Products" asp-action="Index">Магазин</a></li>
+        <li class="breadcrumb-item active">Удаление</li>
+    </ol>
+</nav>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
+<h3>
+    <a class="btn text-dark" asp-action="Index" title="Вернуться к списку">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    Удаление категории
+</h3>
+<hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProductName)
@@ -36,10 +45,10 @@
             @Html.DisplayFor(model => model.IdCategoryProduct)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <br>
+        <input type="submit" value="Удалить" class="btn btn-danger" />
     </form>
 </div>
