@@ -1,11 +1,23 @@
 ﻿@model Exten.Models.Data.CategoriesForum
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Просмотр";
 }
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="CategoriesForums" asp-action="Index">Категории товаров</a></li>
+        <li class="breadcrumb-item active">Просмотр категории</li>
+    </ol>
+</nav>
 
-<h1>Details</h1>
-
+<h3>
+    <a class="btn text-dark" asp-action="Index" title="Вернуться к списку">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    Просмотр категории
+</h3>
+<hr />
 <div>
     <h4>CategoriesForum</h4>
     <hr />
@@ -19,6 +31,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редактировать</a>
 </div>

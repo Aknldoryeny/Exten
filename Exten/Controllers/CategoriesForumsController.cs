@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Exten.Models;
+﻿using Exten.Models;
 using Exten.Models.Data;
+using Exten.ViewModels.CategoriesForum;
+using Exten.ViewModels.CategoriesProduct;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exten.Controllers
 {
@@ -45,28 +42,40 @@ namespace Exten.Controllers
             return View(categoriesForum);
         }
 
-        // GET: CategoriesForums/Create
+
+        //11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        // GET: CategoriesProduct/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: CategoriesForums/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ForumCategoryName")] CategoriesForum categoriesForum)
+        public async Task<IActionResult> Create(CreateCategoriesForumViewModel model)
         {
+
+            if (_context.CategoriesForum
+                .Where(f => f.ForumCategoryName == model.ForumCategoryName)
+                .FirstOrDefault() != null
+                )
+            {
+                ModelState.AddModelError("", "Введеная категория уже существует");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(categoriesForum);
+                CategoriesForum categoriesforum = new()
+                {
+                    ForumCategoryName = model.ForumCategoryName,
+                };
+                _context.Add(categoriesforum);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoriesForum);
+            return View(model);
         }
-
+        //11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
         // GET: CategoriesForums/Edit/5
         public async Task<IActionResult> Edit(short? id)
         {

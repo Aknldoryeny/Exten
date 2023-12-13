@@ -1,13 +1,24 @@
 ﻿@model Exten.Models.Data.CategoriesForum
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Создание категории форума";
 }
 
-<h1>Create</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="CategoriesForums" asp-action="Index">Категории форума</a></li>
+        <li class="breadcrumb-item active">Создание</li>
+    </ol>
+</nav>
 
-<h4>CategoriesForum</h4>
-<hr />
+<h3>
+    <a class="btn text-dark" asp-action="Index" title="Вернуться к списку">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    Добавление категории
+</h3>
+<hr /
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -18,15 +29,13 @@
                 <span asp-validation-for="ForumCategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <br>
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
