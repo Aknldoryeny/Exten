@@ -15,7 +15,7 @@ namespace Exten.Models.Data
         [Required(ErrorMessage = "Введите название категории форума")]
         [Display(Name = "Категория Форума")]
         public string ForumCategoryName { get; set; }
-/*        // Навигационные свойства
-        public ICollection<Product> Products { get; set; }*/
+        // Навигационные свойства
+        public ICollection<Forum> Forum { get; set; }
     }
 }

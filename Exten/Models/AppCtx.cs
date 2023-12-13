@@ -14,5 +14,7 @@ namespace Exten.Models
         public DbSet<CategoryProduct> CategoriesProduct { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<CategoriesForum> CategoriesForum { get; set; }
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Forum> User { get; set; }
     }
 }
